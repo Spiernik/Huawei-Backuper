@@ -1,2 +1,2 @@
 # Huawei-Backuper
-Installs a different version of KO.Backup on your Huawei device.
+Installs a different version of KOBackup on your Huawei device.
