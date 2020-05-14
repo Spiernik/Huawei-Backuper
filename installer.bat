@@ -1,18 +1,27 @@
 @echo off
-ECHO Huawei Backup Installer 0.0.0.1
+ECHO Huawei Backup Installer 0.0.0.2
 ECHO Copyright by Stepan
 ECHO.
 ECHO.
 
-ECHO Starte ADB-Server
+::Starte den ADB Server
+ECHO [1;4mStarte ADB-Server[0m
 ECHO.
+.\ressources\adb.exe kill-server
+::Sleep um auf adb zu warten
+@ping -n 2 localhost> nul
 .\ressources\adb.exe start-server
-ECHO ADB-Geraete:
+ECHO.
+
+::ADB Geräte ausgeben
+ECHO [1;4mADB-Geraete:[0m
+ECHO.
 .\ressources\adb.exe devices -l
 
+ECHO.
 ECHO Bitte Zugriff ueber ADB auf dem Geraet erlauben.
 pause
-ECHO ADB-Geraete:
+ECHO [1;4mADB-Geraete:[0m
 .\ressources\adb.exe devices -l
 
 ECHO.
@@ -22,7 +31,7 @@ set pfad=%pfad:~8%
 .\ressources\adb.exe pull %pfad% KoBackup.apk.backup
 
 ECHO.
-ECHO Entferne APK von Geraet
+ECHO [101;93mEntferne APK von Geraet[0m
 .\ressources\adb.exe uninstall com.huawei.KoBackup
 ECHO.
 
@@ -66,6 +75,9 @@ GOTO ENDE
 :ENDE
 ECHO Bitte Backup auf dem Handy durchfuehren.
 ECHO.
+ECHO.
+ECHO Beende ADB-Server
+.\ressources\adb.exe kill-server
 ECHO FERTIG
 
 pause
