@@ -21,6 +21,11 @@ for /f %%i in ('.\ressources\adb.exe shell pm path com.huawei.KoBackup') do Set 
 set pfad=%pfad:~8%
 .\ressources\adb.exe pull %pfad% KoBackup.apk.backup
 
+ECHO.
+ECHO Entferne APK von Geraet
+.\ressources\adb.exe uninstall com.huawei.KoBackup
+ECHO.
+
 :VERSIONASK
 ECHO.
 set /P askVersion="Welche Version von wollen sie installieren? (8/9/10)"
